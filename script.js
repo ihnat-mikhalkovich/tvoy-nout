@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+﻿document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -35,7 +35,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const productCards = document.querySelectorAll('.product-card');
     productCards.forEach(card => {
         card.addEventListener('click', function() {
-            console.log('Нажата карточка товара - показ деталей');
+            const targetSection = document.querySelector('#contact');
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
         });
+    });
+
+    // Gradient effect on hero
+    const hero = document.querySelector('.hero');
+    hero.addEventListener('mousemove', function(e) {
+        const rect = hero.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const width = rect.width;
+        const angle = (x / width) * 360;
+        hero.style.setProperty('--angle', angle + 'deg');
     });
 });
